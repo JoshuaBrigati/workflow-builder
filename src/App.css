@@ -1,0 +1,113 @@
+/* App layout */
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 10;
+}
+
+.header-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.add-node-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #a855f7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.add-node-btn:hover {
+  background: #9333ea;
+}
+
+.add-node-btn:active {
+  background: #7e22ce;
+}
+
+/* Flow container */
+.flow-container {
+  flex: 1;
+  background: #f9fafb;
+}
+
+/* Question Node */
+.question-node {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 240px;
+  max-width: 280px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.15s ease;
+}
+
+.question-node:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.question-node-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.question-icon {
+  color: #a855f7;
+  flex-shrink: 0;
+}
+
+.question-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.question-text {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Handles */
+.handle {
+  width: 10px !important;
+  height: 10px !important;
+  background: #fff !important;
+  border: 2px solid #a855f7 !important;
+  border-radius: 50% !important;
+}
+
+.handle:hover {
+  background: #a855f7 !important;
+}
+
+/* React Flow overrides */
+.react-flow__attribution {
+  display: none;
+}
