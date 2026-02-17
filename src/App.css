@@ -114,13 +114,7 @@
   border-radius: 50% !important;
 }
 
-.react-flow__handle-top {
-  top: -6px !important;
-}
 
-.react-flow__handle-bottom {
-  bottom: -6px !important;
-}
 
 .handle:hover {
   background: #A500DD !important;
