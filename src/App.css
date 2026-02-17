@@ -114,11 +114,11 @@
   border-radius: 50% !important;
 }
 
-.handle[data-handlepos="top"] {
+.react-flow__handle-top {
   top: -6px !important;
 }
 
-.handle[data-handlepos="bottom"] {
+.react-flow__handle-bottom {
   bottom: -6px !important;
 }
 
