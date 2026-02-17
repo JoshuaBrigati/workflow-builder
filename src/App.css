@@ -112,8 +112,14 @@
   background: #fff !important;
   border: 2px solid #A500DD !important;
   border-radius: 50% !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+}
+
+.handle[data-handlepos="top"] {
+  top: -6px !important;
+}
+
+.handle[data-handlepos="bottom"] {
+  bottom: -6px !important;
 }
 
 .handle:hover {
