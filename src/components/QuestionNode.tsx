@@ -17,10 +17,12 @@ export default function QuestionNode({ data }: NodeProps) {
         className="handle"
       />
       <div className="question-node-header">
-        <MessageCircleQuestion size={18} className="question-icon" />
+        <MessageCircleQuestion size={20} className="question-icon" />
         <span className="question-label">Question</span>
       </div>
-      <p className="question-text">{question}</p>
+      <div className="question-body">
+        <p className="question-text">{question}</p>
+      </div>
       <Handle
         type="source"
         position={Position.Bottom}

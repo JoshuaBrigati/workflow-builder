@@ -47,10 +47,10 @@ const initialEdges: Edge[] = [
     source: "1",
     target: "2",
     type: "smoothstep",
-    style: { stroke: "#a855f7", strokeWidth: 1.5 },
+    style: { stroke: "#A500DD", strokeWidth: 1.5 },
     markerEnd: {
       type: "arrowclosed" as const,
-      color: "#a855f7",
+      color: "#A500DD",
       width: 16,
       height: 16,
     },
@@ -70,10 +70,10 @@ export default function App() {
           {
             ...connection,
             type: "smoothstep",
-            style: { stroke: "#a855f7", strokeWidth: 1.5 },
+            style: { stroke: "#A500DD", strokeWidth: 1.5 },
             markerEnd: {
               type: "arrowclosed" as const,
-              color: "#a855f7",
+              color: "#A500DD",
               width: 16,
               height: 16,
             },
@@ -105,10 +105,10 @@ export default function App() {
       source: lastNode?.id || "1",
       target: newId,
       type: "smoothstep",
-      style: { stroke: "#a855f7", strokeWidth: 1.5 },
+      style: { stroke: "#A500DD", strokeWidth: 1.5 },
       markerEnd: {
         type: "arrowclosed" as const,
-        color: "#a855f7",
+        color: "#A500DD",
         width: 16,
         height: 16,
       },
@@ -139,7 +139,7 @@ export default function App() {
           fitViewOptions={{ padding: 0.4 }}
           defaultEdgeOptions={{
             type: "smoothstep",
-            style: { stroke: "#a855f7", strokeWidth: 1.5 },
+            style: { stroke: "#A500DD", strokeWidth: 1.5 },
           }}
         >
           <Background
