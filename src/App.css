@@ -24,6 +24,7 @@
 .header-title {
   font-size: 14px;
   font-weight: 600;
+  line-height: 20px;
   color: #0A0A0A;
 }
 
@@ -67,7 +68,7 @@
   border-radius: 14px;
   width: 295px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px -1px rgba(0, 0, 0, 0.10);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .question-node-header {
@@ -111,6 +112,8 @@
   background: #fff !important;
   border: 2px solid #A500DD !important;
   border-radius: 50% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 .handle:hover {
