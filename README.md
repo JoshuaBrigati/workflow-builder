@@ -1,43 +1,35 @@
 # Workflow Builder
 
-A workflow node editor for defining LLM agent phone call sequences. Built as a technical exercise for the Design Technologist role at Smarter Technologies.
+A node-based workflow editor for defining LLM agent call sequences. Built for Smarter Technology's virtual call center — allows humans to define the questions an AI agent asks when collecting information from insurers.
 
-## Overview
+**[Live Demo →](https://joshuabrigati.github.io/workflow-builder/)**
 
-This single-page application displays a visual workflow of question nodes that an LLM agent will ask during phone calls. Nodes are connected by edges (arrows) in a sequence, and new nodes can be appended via the "Add Node" button.
+## Stack
 
-## Tech Stack
+- React 19 + TypeScript
+- [React Flow](https://reactflow.dev) for the node graph
+- [Lucide](https://lucide.dev) for iconography
+- Vite for bundling
+- Geist font (matches design spec)
 
-- **React 19** + TypeScript
-- **React Flow** (`@xyflow/react`) — node graph rendering, drag-and-drop, zoom/pan
-- **Lucide React** — icon set
-- **Vite** — build tooling
-
-## Getting Started
+## Running Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173)
+## How It Works
 
-## Features
+- Nodes represent questions the LLM agent will ask during a call
+- Edges (arrows) define the sequence between questions
+- **Add Node** appends a new question to the end of the chain
+- Nodes are draggable — rearrange the layout freely
+- Connect nodes manually by dragging between handles
 
-- Visual node graph with question cards connected by directed edges
-- "Add Node" button appends a new node to the end of the sequence
-- Nodes are draggable and the canvas supports zoom/pan
-- Purple-themed handles and edges matching the design spec
-- Dot grid background
-- Clean, accessible component architecture
+## Design Decisions
 
-## Project Structure
-
-```
-src/
-├── App.tsx              # Main app with React Flow canvas and state
-├── App.css              # Styles
-├── components/
-│   └── QuestionNode.tsx # Custom node component
-└── main.tsx             # Entry point
-```
+- **React Flow** over a custom canvas — handles zoom, pan, drag, and edge routing out of the box. No reason to reinvent it for an MVP.
+- **Node types are extensible** — `nodeTypes` map makes it straightforward to add new node variants (e.g., conditional branching, API calls) without touching the graph logic.
+- **Edge config is centralized** — single source of truth for styling/markers, so adding new edge types or changing the theme is a one-line change.
+- **CSS over Tailwind** — the design spec has specific values (14px Geist semibold, #A500DD, 14px border-radius, 295px card width). Plain CSS maps 1:1 to the Figma tokens without abstraction overhead.
