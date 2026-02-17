@@ -1,21 +1,22 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import {
   ReactFlow,
   addEdge,
   useNodesState,
   useEdgesState,
+  Background,
+  BackgroundVariant,
   type Connection,
   type Node,
   type Edge,
-  Background,
-  BackgroundVariant,
+  type EdgeMarker,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { Plus } from "lucide-react";
 import QuestionNode from "./components/QuestionNode";
 import "./App.css";
 
-const PREDEFINED_QUESTIONS = [
+const QUESTIONS = [
   "What percentage does the plan cover for co-insurance on diagnostic lab services?",
   "What is the deductible amount for in-network providers?",
   "Does the plan require prior authorization for specialist visits?",
@@ -26,18 +27,31 @@ const PREDEFINED_QUESTIONS = [
   "What is the coinsurance rate for outpatient surgery?",
 ];
 
+const EDGE_STYLE = { stroke: "#A500DD", strokeWidth: 1.5 };
+
+const EDGE_MARKER: EdgeMarker = {
+  type: "arrowclosed" as const,
+  color: "#A500DD",
+  width: 16,
+  height: 16,
+};
+
+const nodeTypes = { question: QuestionNode };
+
+let nodeIdCounter = 2;
+
 const initialNodes: Node[] = [
   {
     id: "1",
     type: "question",
     position: { x: 0, y: 0 },
-    data: { question: PREDEFINED_QUESTIONS[0] },
+    data: { question: QUESTIONS[0] },
   },
   {
     id: "2",
     type: "question",
     position: { x: 0, y: 200 },
-    data: { question: PREDEFINED_QUESTIONS[0] },
+    data: { question: QUESTIONS[1] },
   },
 ];
 
@@ -47,21 +61,25 @@ const initialEdges: Edge[] = [
     source: "1",
     target: "2",
     type: "smoothstep",
-    style: { stroke: "#A500DD", strokeWidth: 1.5 },
-    markerEnd: {
-      type: "arrowclosed" as const,
-      color: "#A500DD",
-      width: 16,
-      height: 16,
-    },
+    style: EDGE_STYLE,
+    markerEnd: EDGE_MARKER,
   },
 ];
+
+function createEdge(sourceId: string, targetId: string): Edge {
+  return {
+    id: `e${sourceId}-${targetId}`,
+    source: sourceId,
+    target: targetId,
+    type: "smoothstep",
+    style: EDGE_STYLE,
+    markerEnd: EDGE_MARKER,
+  };
+}
 
 export default function App() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
-  const nodeTypes = useMemo(() => ({ question: QuestionNode }), []);
 
   const onConnect = useCallback(
     (connection: Connection) => {
@@ -70,13 +88,8 @@ export default function App() {
           {
             ...connection,
             type: "smoothstep",
-            style: { stroke: "#A500DD", strokeWidth: 1.5 },
-            markerEnd: {
-              type: "arrowclosed" as const,
-              color: "#A500DD",
-              width: 16,
-              height: 16,
-            },
+            style: EDGE_STYLE,
+            markerEnd: EDGE_MARKER,
           },
           eds
         )
@@ -87,35 +100,24 @@ export default function App() {
 
   const addNode = useCallback(() => {
     const lastNode = nodes[nodes.length - 1];
-    const newId = String(nodes.length + 1);
-    const questionIndex = nodes.length % PREDEFINED_QUESTIONS.length;
+    const newId = String(++nodeIdCounter);
+    const question = QUESTIONS[nodeIdCounter % QUESTIONS.length];
 
     const newNode: Node = {
       id: newId,
       type: "question",
       position: {
-        x: lastNode ? lastNode.position.x : 0,
-        y: lastNode ? lastNode.position.y + 200 : 0,
+        x: lastNode?.position.x ?? 0,
+        y: (lastNode?.position.y ?? -200) + 200,
       },
-      data: { question: PREDEFINED_QUESTIONS[questionIndex] },
-    };
-
-    const newEdge: Edge = {
-      id: `e${lastNode?.id}-${newId}`,
-      source: lastNode?.id || "1",
-      target: newId,
-      type: "smoothstep",
-      style: { stroke: "#A500DD", strokeWidth: 1.5 },
-      markerEnd: {
-        type: "arrowclosed" as const,
-        color: "#A500DD",
-        width: 16,
-        height: 16,
-      },
+      data: { question },
     };
 
     setNodes((nds) => [...nds, newNode]);
-    setEdges((eds) => [...eds, newEdge]);
+
+    if (lastNode) {
+      setEdges((eds) => [...eds, createEdge(lastNode.id, newId)]);
+    }
   }, [nodes, setNodes, setEdges]);
 
   return (
@@ -139,7 +141,7 @@ export default function App() {
           fitViewOptions={{ padding: 0.4 }}
           defaultEdgeOptions={{
             type: "smoothstep",
-            style: { stroke: "#A500DD", strokeWidth: 1.5 },
+            style: EDGE_STYLE,
           }}
         >
           <Background

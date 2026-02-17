@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap');
 
-/* App layout */
 .app {
   width: 100vw;
   height: 100vh;
@@ -10,6 +9,7 @@
 }
 
 /* Header */
+
 .header {
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
   color: #FAFAFA;
   border: none;
   border-radius: 8px;
-  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -55,20 +55,24 @@
   background: #7a00a3;
 }
 
-/* Flow container */
+/* Flow canvas */
+
 .flow-container {
   flex: 1;
   background: #F5F5F5;
 }
 
-/* Question Node */
+/* Question node */
+
 .question-node {
-  background: #FFFFFF;
+  background: #fff;
   border: 1px solid #E5E5E5;
   border-radius: 14px;
   width: 295px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px -1px rgba(0, 0, 0, 0.10);
   overflow: visible;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
 .question-node-header {
@@ -85,27 +89,25 @@
 }
 
 .question-label {
-  color: #0A0A0A;
-  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
   font-weight: 600;
-  line-height: 100%;
+  line-height: 1;
+  color: #0A0A0A;
 }
 
 .question-body {
-  padding: 12px 12px 24px 12px;
+  padding: 12px 12px 24px;
 }
 
 .question-text {
-  color: #171717;
-  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
-  font-weight: 400;
   line-height: 20px;
+  color: #171717;
   margin: 0;
 }
 
 /* Handles */
+
 .handle {
   width: 12px !important;
   height: 12px !important;
@@ -114,13 +116,16 @@
   border-radius: 50% !important;
 }
 
-
-
 .handle:hover {
   background: #A500DD !important;
 }
 
-/* Edge selection */
+/* Edges */
+
+.react-flow__edge {
+  cursor: pointer;
+}
+
 .react-flow__edge.selected .react-flow__edge-path,
 .react-flow__edge:focus .react-flow__edge-path,
 .react-flow__edge:focus-visible .react-flow__edge-path {
@@ -129,15 +134,12 @@
   filter: drop-shadow(0 0 4px rgba(165, 0, 221, 0.4));
 }
 
-.react-flow__edge {
-  cursor: pointer;
-}
-
 .react-flow__edge-interaction {
   stroke-width: 20 !important;
 }
 
 /* React Flow overrides */
+
 .react-flow__attribution {
   display: none;
 }
