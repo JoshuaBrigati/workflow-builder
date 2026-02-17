@@ -17,7 +17,7 @@ export default function QuestionNode({ data }: NodeProps) {
         className="handle"
       />
       <div className="question-node-header">
-        <MessageCircleQuestion size={20} className="question-icon" />
+        <MessageCircleQuestion size={24} className="question-icon" />
         <span className="question-label">Question</span>
       </div>
       <div className="question-body">
